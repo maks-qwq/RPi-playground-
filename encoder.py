@@ -33,3 +33,14 @@ except KeyboardInterrupt:
     print("Exiting...")
 finally:
     GPIO.cleanup()
+
+
+# Define button pin
+SW = 22
+GPIO.setup(SW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+def button_pressed(channel):
+    print("Button Pressed!")
+
+# Add event detection for button press
+GPIO.add_event_detect(SW, GPIO.FALLING, callback=button_pressed, bouncetime=300)
